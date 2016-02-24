@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-error_reporting(0);
+//error_reporting(0);
 
 include "../pswd.php";
 include "class/ipfs.class.php";
@@ -33,8 +33,23 @@ if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') {
 }
 
 $db = new PDO('mysql:host=localhost;dbname=hashes;charset=utf8', $db_user, $db_pswd);
-$uploadsInLastHour = $db->query("SELECT COUNT(*) FROM hash_info WHERE first_seen > UNIX_TIMESTAMP() - 3600")->fetch();
+//$uploadsInLastHour = $db->query("SELECT COUNT(*) FROM hash_info WHERE first_seen > UNIX_TIMESTAMP() - 3600")->fetch();
 
+/* sCRiPTz-TEAM MULTi UPLOAD START */
+for ($i = 0; $i < count($_FILES['img']['tmp_name']); $i++) {
+		$image = $_FILES['img']['tmp_name'][$i];
+	$fo = fopen($_FILES['img']['tmp_name'][$i], "r");
+	$imageContent =  fread($fo, filesize($image));
+	$hash = $ipfs->add($imageContent);
+	
+if ($hash == "") {
+	$hash = $errorHash;
+}
+echo $protocol."://$host/$hash"."<br />";
+}
+/* sCRiPTz-TEAM MULTi UPLOAD STOP */
+
+/*
 if ($uploadsInLastHour[0] < 100) {
 
 	$image = $_FILES['img']['tmp_name'];
@@ -48,3 +63,4 @@ if ($hash == "") {
 	$hash = $errorHash;
 }
 header("Location: $protocol://$host/$hash#new"  );
+*/
