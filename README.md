@@ -1,4 +1,4 @@
-# ipfs.pics
+# ipfs.pics - NOW WITH MULTI UPLOAD
 [ipfs.pics](https://ipfs.pics/) is a open-source and distributed image hosting website.
 It aims to be an alternative to non-libre image hosting websites such as imgur, flickr and others.
 
