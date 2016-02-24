@@ -81,7 +81,7 @@
 
 					<div class="inner cover">
 						<form id="dropoff" action="/upload.php" enctype="multipart/form-data" method="POST">
-							<input type="file" id="dropoff_image" name="img" accept="image/*">
+							<input type="file" id="dropoff_image" name="img[]" accept="image/*" multiple>
 								<br>
 								<span>Click here to upload a picture to the permanent web</span>
 								<br>
